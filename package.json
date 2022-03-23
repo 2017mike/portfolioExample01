@@ -2,7 +2,7 @@
   "name": "portfolioexample01",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://2017mike.github.io/portfolioexample01",
+  "homepage": "https://2017mike.github.io/portfolioExample01",
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
