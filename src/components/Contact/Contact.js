@@ -65,6 +65,7 @@ const Contact = () => {
       <Grid container justifyContent="center">
         <Grid item>
           <h1>Contact</h1>
+          <div></div>
         </Grid>
       </Grid>
       <Grid container justifyContent="center" p={2} spacing={3}>
