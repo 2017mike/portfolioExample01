@@ -7,31 +7,56 @@ import Input from '@mui/material/Input';
 import FormHelperText from '@mui/material/FormHelperText';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import './Contact.css'
 const Contact = () => {
 
   const [formState, setFormState] = useState({
     email: '',
     name: '',
-    message: ''
+    message: '',
+    nameNeededState: false,
+    messageNeededState: false,
+    emailInvalidState: false
   })
 
     const handleInputChange = ({ target: { name, value } }) => {
     setFormState({ ...formState, [name]: value })
   }
 
+  
 
-  const handleSubmit = () => {
-    console.log('hi')
-    if(formState.email===''){
-      alert('email is required')
-    }
-    if(formState.name===''){
-      alert('name is required')
-    }
-    if(formState.message===''){
-      alert('message is required')
+  const handleNameRequired = () => {
+    if(formState.name== '') {
+    setFormState({...formState, nameNeededState: true, messageNeededState: false, emailInvalidState: false})
     }
   }
+
+  const handleMessageRequired = () => {
+    if (formState.message == '') {
+    setFormState({...formState, nameNeededState: false, messageNeededState: true, emailInvalidState: false})
+    }
+  }
+
+  const validateEmail = (inputText) => {
+        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+        if(inputText.match(mailformat))
+                  {
+              return true
+              }
+              else {
+                return false
+              }
+        }
+
+  const handleEmailBlur = () => {
+    if(validateEmail(formState.email)===false)  {
+      console.log('invalid email')
+      setFormState({...formState, emailInvalidState: true, nameNeededState: false, messageNeededState: false})
+    }
+  }
+
+
+ 
   return (
     <>
       <Grid container justifyContent="center">
@@ -45,6 +70,7 @@ const Contact = () => {
   <InputLabel htmlFor="my-input">Name</InputLabel>
   <Input id="my-input" aria-describedby="my-helper-text" name="name"
   onChange={handleInputChange}
+  onBlur={handleNameRequired}
   />
 </FormControl>
        </Grid>
@@ -55,7 +81,10 @@ const Contact = () => {
           <FormControl fullWidth={true}>
   <InputLabel htmlFor="my-input">Email</InputLabel>
   <Input id="my-input" aria-describedby="my-helper-text" name="email" 
-  onChange={handleInputChange}/>
+  onChange={handleInputChange}
+  onBlur={handleEmailBlur}
+  />
+
 </FormControl>
        </Grid>
         <Grid item xs={10} md={8} lg={7}>
@@ -67,13 +96,21 @@ const Contact = () => {
           rows={4}
           fullWidth={true}
           onChange={handleInputChange}
+          onBlur={handleMessageRequired}
         />
        </Grid>
          </Grid>
        <Grid container justifyContent="center">
-          <Button onClick={handleSubmit}>Submit</Button>
+          <Button>Submit</Button>
+       </Grid>
+        <Grid container justifyContent="center">
+          {formState.messageNeededState? <p> Message needed!</p> : ''}
+          {formState.nameNeededState?  <p> Name needed!</p> : ''}
+          {formState.emailInvalidState? <p> Invalid email!</p> : ''}
+
        </Grid>
       
+      <Grid container className="spacer"></Grid>
      
       
     </>

@@ -17,12 +17,12 @@ const About = () => {
      
     <Grid container justifyContent="center" p={2} spacing={2}>
     {/* <Grid item xs={2} md={1} ></Grid> */}
-    <Grid item md={1}></Grid>
+    <Grid item md={2}></Grid>
     <Grid  item xs={8} md={4}  >
      <Avatar alt="Remy Sharp" src={selfie} sx={{ width: 1, height: 1}}></Avatar>
     </Grid>
     {/* <Grid item xs={2} md={1} ></Grid> */}
-   <Grid item md={2}></Grid>
+   
     <Grid item xs={12} md={3} >
      <Paper >
        <h1> Michael Scharf</h1>
@@ -32,7 +32,7 @@ const About = () => {
        </Paper>
 
     </Grid>
-    <Grid item md={2}>
+    <Grid item md={3}>
 
     </Grid>
 
