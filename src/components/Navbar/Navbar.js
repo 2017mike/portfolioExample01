@@ -17,9 +17,10 @@ import MenuItem from '@mui/material/MenuItem';
 const pages = ['About Me', 'Portfolio', 'Contact', 'Resume'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-const Navbar = () => {
+const Navbar = ({pageState, setPageState}) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -35,6 +36,24 @@ const Navbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleOpenWork = () => {
+    console.log('hi')
+    setPageState({...pageState, contactState: false,
+    aboutState: false, workState: true})
+  }
+
+  const handleOpenContact = () => {
+    console.log('hi')
+    setPageState({...pageState, contactState: true,
+    aboutState: false, workState: false})
+  }
+
+  const handleOpenAboutMe = () => {
+    console.log('hi')
+    setPageState({...pageState, contactState: false,
+    aboutState: true, workState: false})
+  }
 
   return (
     <AppBar position="static">
@@ -78,11 +97,11 @@ const Navbar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              
+                <MenuItem  onClick={handleOpenAboutMe}>
+                  <Typography textAlign="center">About Me</Typography>
                 </MenuItem>
-              ))}
+             
             </Menu>
           </Box>
           <Typography
@@ -94,15 +113,32 @@ const Navbar = () => {
             Michael Scharf
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+           
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                
+                onClick={handleOpenAboutMe}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+              About Me
               </Button>
-            ))}
+
+               <Button
+                
+                onClick={handleOpenWork}
+
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+              Work
+              </Button>
+
+               <Button
+                
+                onClick={handleOpenContact}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+              Contact
+              </Button>
+          
           </Box>
 
           {/* <Box sx={{ flexGrow: 0 }}>

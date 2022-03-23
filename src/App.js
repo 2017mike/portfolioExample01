@@ -1,4 +1,5 @@
 
+import { useState } from 'react'
 import Navbar from './components/Navbar'
 import About from './components/About'
 import CssBaseline from '@mui/material/CssBaseline';
@@ -8,13 +9,22 @@ import Footer from './components/Footer'
 import './App.css'
 
 function App() {
+  const [pageState, setPageState] = useState({
+    aboutState: true,
+    workState: false,
+    contactState: false,
+  })
   return (
     <>
     <CssBaseline />
-   <Navbar />
-   <About />
-   <Work />
-   <Contact></Contact>
+   <Navbar setPageState={setPageState}
+   pageState={pageState}/>
+   {pageState.aboutState? 
+   <About   />
+   : ''}
+   {pageState.workState?<Work   /> : '' }
+  
+   {pageState.contactState?<Contact   /> : '' }
    <Footer />
    </>
   )

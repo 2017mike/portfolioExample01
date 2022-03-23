@@ -58,7 +58,10 @@ const Contact = () => {
 
  
   return (
+   
     <>
+     
+      
       <Grid container justifyContent="center">
         <Grid item>
           <h1>Contact</h1>
@@ -113,7 +116,9 @@ const Contact = () => {
       <Grid container className="spacer"></Grid>
      
       
-    </>
+    </> 
+
+
   )
 }
 
